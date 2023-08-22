@@ -10,6 +10,9 @@ const AuthPage = ({onAuth}) => {
 
   const onLogin = (e) => {
     e.preventDefault();
+    console.log({username});
+    console.log({secret});
+    console.log("REACT_APP_CHAT_ENGINE_PROJECT_ID", process.env.REACT_APP_CHAT_ENGINE_PROJECT_ID);
 
     axios.get("https://api.chatengine.io/users/me/", {
       headers: {
@@ -18,7 +21,7 @@ const AuthPage = ({onAuth}) => {
         "User-Secret": secret,
       },
     }).then((r) => onAuth({ ...r.data, secret })) // NOTE: over-ride secret
-    .catch((e) => console.log(JSON.stringify(e.response.data)));;
+    .catch((e) => console.log(JSON.stringify(e.response.data)));
   };
 
   const onSignup = (e) => {
